@@ -32,17 +32,31 @@ if (data) {
   const lines = data.toString().split('\n');
   lines.pop();
   let first = true;
+  const table = [];
+  let maxDensity = 0;
   for (const line of lines) {
     if (first) {
       first = false;
     } else {
       const [name, population, area, density, country] = line.split(',');
-      let s = rpad(name, ' ', 18);
-      s += lpad(population, ' ', 10);
-      s += lpad(area, ' ', 10);
-      s += lpad(density, ' ', 10);
-      s += lpad(country, ' ', 18);
-      console.log(s);
+      const d = parseInt(density);
+      if (d > maxDensity) maxDensity = d;
+      table.push([name, population, area, density, country]);
     }
+  }
+  for (const row of table) {
+    const density = row[3];
+    const compare = Math.round(density * 100 / maxDensity);
+    row.push(compare.toString());
+  }
+  for (const row of table) {
+    const [name, population, area, density, country, compare] = row;
+    let s = rpad(name, ' ', 18);
+    s += lpad(population, ' ', 10);
+    s += lpad(area, ' ', 8);
+    s += lpad(density, ' ', 8);
+    s += lpad(country, ' ', 18);
+    s += lpad(compare, ' ', 6);
+    console.log(s);
   }
 }

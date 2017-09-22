@@ -17,15 +17,19 @@ const task = {
   file: './cities.dat',
   align: [rpad, lpad, lpad, lpad, lpad],
   width: [18, 10, 10, 10, 18],
-  toString() {
-    return (fs.readFileSync(this.file).toString().split('\n')
-      .filter((s, i) => i && s)
-      .map(line => line.split(',')
-        .map((cell, i) => this.align[i](cell, ' ', this.width[i]))
-        .join('')
-      ).join('\n')
-    );
-  }
+  filter: (s, i) => (s && i),
+  pad: ' ',
+  separator: ',',
+  compare: 'density',
+  order: 'area',
 };
 
-console.log(task.toString());
+const resolve = (task) => {
+  const lines = fs.readFileSync(task.file).toString().split('\n');
+  const renderCell = (cell, i) => task.align[i](cell, task.pad, task.width[i]);
+  const renderRow = line => line.split(task.separator).map(renderCell).join('');
+  const result = lines.filter(task.filter).map(renderRow).join('\n');
+  return result;
+};
+
+console.log(resolve(task));

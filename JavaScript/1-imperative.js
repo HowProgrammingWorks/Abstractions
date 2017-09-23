@@ -32,7 +32,7 @@ if (data) {
   const lines = data.toString().split('\n');
   lines.pop();
   let first = true;
-  const table = [];
+  let table = [];
   let maxDensity = 0;
   for (const line of lines) {
     if (first) {
@@ -49,6 +49,7 @@ if (data) {
     const compare = Math.round(density * 100 / maxDensity);
     row.push(compare.toString());
   }
+  table = table.sort((r1, r2) => r2[5] - r1[5]);
   for (const row of table) {
     const [name, population, area, density, country, compare] = row;
     let s = rpad(name, ' ', 18);

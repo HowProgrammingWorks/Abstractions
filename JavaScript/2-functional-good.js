@@ -23,8 +23,9 @@ const table = file => read(file).map(row);
 const render = table => table.map(renderRow).join('\n');
 const max = (a, b) => (a > b ? a : b);
 const relative = (max, val) => Math.round(val * 100 / max);
-const maxCol = (i, table) => [table, table.map(row => row[i]).reduce(max)];
+const maxCol = (col, table) => [table, table.map(row => row[col]).reduce(max)];
 const calc = tuple => tuple[0].map(r => (r.push(relative(tuple[1], r[3])), r));
-const prepare = file => render(calc(maxCol(3, table(file))));
+const sortCol = (col, table) => table.sort((r1, r2) => (r2[col] - r1[col]));
+const prepare = file => render(sortCol(5, calc(maxCol(3, table(file)))));
 
 console.log(prepare('./cities.dat'));

@@ -10,22 +10,26 @@
 
 const fs = require('fs');
 
+const proportion = (max, val) => Math.round(val * 100 / max);
+const compose = (...funcs) => x => funcs.reduce((x, fn) => fn(x), x);
 const rpad = (s, char, count) => s + char.repeat(count - s.length);
 const lpad = (s, char, count) => char.repeat(count - s.length) + s;
-const pad = i => (i ? lpad : rpad);
-const width = i => [18, 10, 8, 8, 18, 6][i];
-const isRow = (s, i) => (i && s);
-const read = file => fs.readFileSync(file).toString().split('\n').filter(isRow);
-const renderCell = (cell, i) => pad(i)(cell + '', ' ', width(i));
-const renderRow = row => row.map(renderCell).join('');
-const row = line => line.split(',').map((cell, i) => (i === 3 ? +cell : cell));
-const table = file => read(file).map(row);
-const render = table => table.map(renderRow).join('\n');
-const max = (a, b) => (a > b ? a : b);
-const relative = (max, val) => Math.round(val * 100 / max);
-const maxCol = (col, table) => [table, table.map(row => row[col]).reduce(max)];
-const calc = tuple => tuple[0].map(r => (r.push(relative(tuple[1], r[3])), r));
-const sortCol = (col, table) => table.sort((r1, r2) => (r2[col] - r1[col]));
-const prepare = file => render(sortCol(5, calc(maxCol(3, table(file)))));
 
-console.log(prepare('./cities.dat'));
+const cellPad = i => (i ? lpad : rpad);
+const cellWidth = i => [18, 10, 8, 8, 18, 6][i];
+
+const renderCell = (cell, i) => cellPad(i)(cell + '', ' ', cellWidth(i));
+const renderRow = row => row.map(renderCell).join('');
+const renderTable = table => table.map(renderRow).join('\n');
+
+const sortByDensity = table => table.sort((r1, r2) => (r2[3] - r1[3]));
+const calc = (table, max) => table.map(r => (r.push(proportion(max, r[3])), r));
+const calcProportion = table => calc(table, table[0][3]);
+
+const parseTable = lines => lines.map(line => line.split(','));
+const toLines = data => data.split('\n').filter((s, i) => i && s);
+const readFile = file => fs.readFileSync(file).toString();
+const getDataset = compose(readFile, toLines, parseTable);
+const main = compose(getDataset, sortByDensity, calcProportion, renderTable);
+
+console.log(main('./cities.dat'));

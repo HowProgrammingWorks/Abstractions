@@ -1,19 +1,23 @@
 'use strict';
 
-// 1. Equations instead of control flow
-// 2. Lazy calculations
-// 3. Parallel execution ready
-// 4. Recursion instead of loops
-// 5. Immutability, no state
-// 6. No variables, no side effects
-// 7. Math model
+// Bad practices in FP below:
+// 1. Global data structures
+// 2. Mutable global state
+// 3. Long anonymous lambdas
+// 4. Complex syntactic hacks
+// 5. Assignment statements
+// 6. Return hack
+// 7. Return hack
+// 8. Magic numbers
 
 const fs = require('fs');
 
-const rpad = (s, char, count) => s + char.repeat(count - s.length);
-const lpad = (s, char, count) => char.repeat(count - s.length) + s;
+const rpad = (s, count, char) => s.padEnd(count, char);
+const lpad = (s, count, char) => s.padStart(count, char);
+
 const padding = [rpad, lpad, lpad, lpad, lpad, lpad];
 const width = [18, 10, 8, 8, 18, 6];
+
 let maxDensity = 0;
 
 const format = file => (
@@ -24,11 +28,12 @@ const format = file => (
       (i - 3) || (maxDensity = maxDensity > cell ? maxDensity : cell), cell
     )))
     .map(row => (
-      row.push(Math.round(row[3] * 100 / maxDensity).toString()), row
+      row.push(Math.round(row[3] * 100 / maxDensity).toString()),
+      row
     ))
     .sort((r1, r2) => (r2[5] - r1[5]))
     .map(row => (
-      row.map((cell, i) => padding[i](cell + '', ' ', width[i])).join('')
+      row.map((cell, i) => padding[i](cell + '', width[i])).join('')
     ))
     .join('\n')
 );

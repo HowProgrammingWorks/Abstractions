@@ -28,8 +28,7 @@ const format = file => (
       (i - 3) || (maxDensity = maxDensity > cell ? maxDensity : cell), cell
     )))
     .map(row => (
-      row.push(Math.round(row[3] * 100 / maxDensity).toString()),
-      row
+      row.push(Math.round(row[3] * 100 / maxDensity).toString()), row
     ))
     .sort((r1, r2) => (r2[5] - r1[5]))
     .map(row => (

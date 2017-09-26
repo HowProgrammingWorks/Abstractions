@@ -1,12 +1,11 @@
 'use strict';
 
-// 1. Control flow
-// 2. Step by step execution
-// 3. Assignment statements
-// 4. Loops and conditions: for/if
-// 5. State variables and side effects
-// 6. Mutable data structures
-// 7. Model of the process
+// Bad practices in imperative programming below:
+// 1. Single execution sequence, no procedural decomposition
+// 2. No appropriate error handling (error ignoring)
+// 3. Unnecessary variables and steps (flags, calculations)
+// 4. Unclear naming (or extra short) or no naming (array indexes)
+// 5. Long expressions
 
 const fs = require('fs');
 

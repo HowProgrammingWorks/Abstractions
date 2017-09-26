@@ -34,6 +34,7 @@ const parseTable = lines => lines.map(line => line.split(','));
 const toLines = data => data.split('\n').filter((s, i) => i && s);
 const readFile = file => fs.readFileSync(file).toString();
 const getDataset = compose(readFile, toLines, parseTable);
+
 const main = compose(getDataset, sortByDensity, calcProportion, renderTable);
 
 console.log(main('./cities.dat'));

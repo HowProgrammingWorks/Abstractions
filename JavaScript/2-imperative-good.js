@@ -60,7 +60,7 @@ function showTable(cities) {
   }
 }
 
-const data = loadFile('./cities.dat');
+const data = loadFile('./cities.csv');
 if (data) {
   const cities = parseFile(data);
   calculateDensityColumn(cities);

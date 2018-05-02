@@ -9,7 +9,7 @@
 // 7. Task, result or process description
 
 const task = {
-  file: './cities.dat',
+  file: './cities.csv',
   types: [String, Number, Number, Number, String, Number],
   width: [18, 10, 8, 8, 18, 6],
   pad: ' ',

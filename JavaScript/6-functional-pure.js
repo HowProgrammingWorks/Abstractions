@@ -15,7 +15,7 @@ const filter = curry((filterFn, arr) => arr.filter(filterFn));
 const first = arr => arr[0];
 const skipFirst = arr => arr.slice(1);
 const hasValue = val => !!val;
-const toStr = val => val + '';
+const toStr = val => val.toString();
 const appendCell = (row, value) => row.concat(value);
 const cellPad = (index, str, width) => (
   index ? str.padStart(width) : str.padEnd(width)
@@ -78,4 +78,4 @@ const main = pipe(
   renderTable
 );
 
-console.log(main('./cities.dat'));
+console.log(main('./cities.csv'));

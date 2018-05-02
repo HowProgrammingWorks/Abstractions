@@ -3,6 +3,7 @@
 const fs = require('fs');
 
 const proportion = (max, val) => Math.round(val * 100 / max);
+
 const compose = (...funcs) => x => funcs.reduce((x, fn) => fn(x), x);
 
 const densityCol = 3;
@@ -29,4 +30,4 @@ const getDataset = file => fs.readFileSync(file).toString()
 
 const main = compose(getDataset, calcProportion, renderTable);
 
-console.log(main('./cities.dat'));
+console.log(main('./cities.csv'));

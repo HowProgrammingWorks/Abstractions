@@ -36,4 +36,4 @@ const getDataset = (file) => {
 
 const main = compose(getDataset, calcProportion, renderTable);
 
-console.log(main('./cities.dat'));
+console.log(main('./cities.csv'));

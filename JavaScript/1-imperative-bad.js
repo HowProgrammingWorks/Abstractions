@@ -9,7 +9,7 @@
 
 const fs = require('fs');
 
-const data = fs.readFileSync('./cities.dat');
+const data = fs.readFileSync('./cities.csv');
 if (data) {
   const lines = data.toString().split('\n');
   lines.pop();

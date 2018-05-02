@@ -37,4 +37,4 @@ const format = file => (
     .join('\n')
 );
 
-console.log(format('./cities.dat'));
+console.log(format('./cities.csv'));

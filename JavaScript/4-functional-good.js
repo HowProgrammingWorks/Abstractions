@@ -37,4 +37,4 @@ const getDataset = compose(readFile, toLines, parseTable);
 
 const main = compose(getDataset, sortByDensity, calcProportion, renderTable);
 
-console.log(main('./cities.dat'));
+console.log(main('./cities.csv'));

@@ -63,7 +63,7 @@ const toLines = pipe(
   filter(hasValue)
 );
 
-const readFile = file => fs.readFileSync(file).toString();
+const readFile = file => fs.readFileSync(file, 'utf8').toString();
 
 const getDataset = pipe(
   readFile,

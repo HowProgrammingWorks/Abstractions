@@ -13,7 +13,7 @@ const fs = require('fs');
 function loadFile(fileName) {
   let data = null;
   try {
-    data = fs.readFileSync(fileName);
+    data = fs.readFileSync(fileName, 'utf8');
   } catch (error) {
     console.log('Can\'t read file: ' + fileName);
   }

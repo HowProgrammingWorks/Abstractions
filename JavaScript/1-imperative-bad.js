@@ -9,7 +9,7 @@
 
 const fs = require('fs');
 
-const data = fs.readFileSync('./cities.csv');
+const data = fs.readFileSync('./cities.csv', 'utf8');
 if (data) {
   const lines = data.toString().split('\n');
   lines.pop();

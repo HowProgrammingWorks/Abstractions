@@ -6,7 +6,7 @@ const compose = (...funcs) => x => funcs.reduce((x, fn) => fn(x), x);
 
 const DENSITY_COL = 3;
 
-const renderTable = (table) => {
+const renderTable = table => {
   const cellWidth = [18, 10, 8, 8, 18, 6];
   return table.map(row => (
     row.map((cell, i) => {
@@ -18,7 +18,7 @@ const renderTable = (table) => {
 
 const proportion = (max, val) => Math.round(val * 100 / max);
 
-const calcProportion = (table) => {
+const calcProportion = table => {
   table.sort((row1, row2) => row2[DENSITY_COL] - row1[DENSITY_COL]);
   const maxDensity = table[0][DENSITY_COL];
   table.forEach(row => {
@@ -27,7 +27,7 @@ const calcProportion = (table) => {
   return table;
 };
 
-const getDataset = (file) => {
+const getDataset = file => {
   const lines = fs.readFileSync(file, 'utf8').toString().split('\n');
   lines.shift();
   lines.pop();

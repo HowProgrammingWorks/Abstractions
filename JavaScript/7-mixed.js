@@ -28,7 +28,7 @@ const calcProportion = table => {
 };
 
 const getDataset = file => {
-  const lines = fs.readFileSync(file, 'utf8').toString().split('\n');
+  const lines = fs.readFileSync(file, 'utf8').split('\n');
   lines.shift();
   lines.pop();
   return lines.map(line => line.split(','));

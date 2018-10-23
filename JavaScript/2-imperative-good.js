@@ -21,7 +21,7 @@ function loadFile(fileName) {
 }
 
 function parseFile(data) {
-  const lines = data.toString().split('\n');
+  const lines = data.split('\n');
   lines.shift();
   const cities = [];
   for (const line of lines) {

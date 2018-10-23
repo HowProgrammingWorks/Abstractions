@@ -11,7 +11,7 @@ const fs = require('fs');
 
 const data = fs.readFileSync('./cities.csv', 'utf8');
 if (data) {
-  const lines = data.toString().split('\n');
+  const lines = data.split('\n');
   lines.pop();
   const table = [];
   let first = true;

@@ -23,7 +23,7 @@ const calcProportion = table => (
   ))
 );
 
-const getDataset = file => fs.readFileSync(file, 'utf8').toString()
+const getDataset = file => fs.readFileSync(file, 'utf8')
   .split('\n')
   .filter((s, i) => i && s)
   .map(line => line.split(','));

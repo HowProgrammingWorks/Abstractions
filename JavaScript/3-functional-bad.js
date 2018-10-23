@@ -21,7 +21,7 @@ const width = [18, 10, 8, 8, 18, 6];
 let maxDensity = 0;
 
 const format = file => (
-  fs.readFileSync(file, 'utf8').toString().split('\n')
+  fs.readFileSync(file, 'utf8').split('\n')
     .filter((s, i) => i && s)
     .map(line => line.split(',').map((cell, i, arr) => (
       (i < 1 || i > 3) || (cell = parseInt(cell), arr[i] = cell),

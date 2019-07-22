@@ -10,7 +10,7 @@
 
 const fs = require('fs');
 
-function loadFile(fileName) {
+const loadFile = fileName => {
   let data = null;
   try {
     data = fs.readFileSync(fileName, 'utf8');
@@ -18,9 +18,9 @@ function loadFile(fileName) {
     console.log('Can\'t read file: ' + fileName);
   }
   return data;
-}
+};
 
-function parseFile(data) {
+const parseFile = data => {
   const lines = data.split('\n');
   lines.shift();
   const cities = [];
@@ -36,17 +36,17 @@ function parseFile(data) {
     }
   }
   return cities;
-}
+};
 
-function calculateDensityColumn(cities) {
+const calculateDensityColumn = cities => {
   cities.sort((city1, city2) => city2.density - city1.density);
   const maxDensity = cities[0].density;
   for (const city of cities) {
     city.relative = Math.round(city.density * 100 / maxDensity);
   }
-}
+};
 
-function showTable(cities) {
+const showTable = cities => {
   for (const city of cities) {
     const line = (
       city.name.padEnd(18) +
@@ -58,7 +58,7 @@ function showTable(cities) {
     );
     console.log(line);
   }
-}
+};
 
 const data = loadFile('./cities.csv');
 if (data) {

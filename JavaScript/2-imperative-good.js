@@ -10,7 +10,7 @@
 
 const fs = require('fs');
 
-const loadFile = fileName => {
+const loadFile = (fileName) => {
   let data = null;
   try {
     data = fs.readFileSync(fileName, 'utf8');
@@ -20,7 +20,7 @@ const loadFile = fileName => {
   return data;
 };
 
-const parseFile = data => {
+const parseFile = (data) => {
   const lines = data.split('\n');
   lines.shift();
   const cities = [];
@@ -38,7 +38,7 @@ const parseFile = data => {
   return cities;
 };
 
-const calculateDensityColumn = cities => {
+const calculateDensityColumn = (cities) => {
   cities.sort((city1, city2) => city2.density - city1.density);
   const maxDensity = cities[0].density;
   for (const city of cities) {
@@ -46,7 +46,7 @@ const calculateDensityColumn = cities => {
   }
 };
 
-const showTable = cities => {
+const showTable = (cities) => {
   for (const city of cities) {
     const line = (
       city.name.padEnd(18) +

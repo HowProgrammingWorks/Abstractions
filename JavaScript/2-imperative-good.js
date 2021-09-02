@@ -11,13 +11,12 @@
 const fs = require('fs');
 
 const loadFile = (fileName) => {
-  let data = null;
   try {
-    data = fs.readFileSync(fileName, 'utf8');
+    const data = fs.readFileSync(fileName, 'utf8');
+    return data;
   } catch (error) {
     console.log('Can\'t read file: ' + fileName);
   }
-  return data;
 };
 
 const parseFile = (data) => {
@@ -27,12 +26,14 @@ const parseFile = (data) => {
   for (const line of lines) {
     if (line) {
       const cells = line.split(',');
-      const name = cells[0];
-      const population = parseInt(cells[1]);
-      const area = parseInt(cells[2]);
-      const density = parseInt(cells[3]);
-      const country = cells[4];
-      cities.push({ name, population, area, density, country });
+      const [name, population, area, density, country] = cells;
+      cities.push({
+        name,
+        population: parseInt(population),
+        area: parseInt(area),
+        density: parseInt(density),
+        country,
+      });
     }
   }
   return cities;

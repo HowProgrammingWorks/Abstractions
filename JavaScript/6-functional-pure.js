@@ -73,7 +73,6 @@ const getDataset = pipe(
 
 const main = pipe(
   getDataset,
-  sortRowsByDensity,
   appendTableProportionCol,
   renderTable
 );

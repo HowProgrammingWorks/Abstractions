@@ -1,6 +1,6 @@
 'use strict';
 
-const fs = require('fs');
+const fs = require('node:fs');
 
 const compose = (...funcs) => (x) => funcs.reduce((x, fn) => fn(x), x);
 

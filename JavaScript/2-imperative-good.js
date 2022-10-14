@@ -8,7 +8,7 @@
 // 6. Mutable data structures
 // 7. Model of the process
 
-const fs = require('fs');
+const fs = require('node:fs');
 
 const loadFile = (fileName) => {
   try {

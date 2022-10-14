@@ -10,7 +10,7 @@
 // 7. Return hack
 // 8. Magic numbers
 
-const fs = require('fs');
+const fs = require('node:fs');
 
 const rpad = (s, count, char) => s.padEnd(count, char);
 const lpad = (s, count, char) => s.padStart(count, char);

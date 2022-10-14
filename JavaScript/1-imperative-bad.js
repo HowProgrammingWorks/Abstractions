@@ -7,7 +7,7 @@
 // 4. Unclear naming (or extra short) or no naming (array indexes)
 // 5. Long expressions
 
-const fs = require('fs');
+const fs = require('node:fs');
 
 const data = fs.readFileSync('./cities.csv', 'utf8');
 if (data) {

@@ -1,6 +1,6 @@
 'use strict';
 
-const fs = require('fs');
+const fs = require('node:fs');
 
 /* fp */
 const pipe = (...fns) => (x) => fns.reduce((v, f) => f(v), x);

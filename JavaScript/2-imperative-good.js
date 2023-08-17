@@ -17,6 +17,7 @@ const loadFile = (fileName) => {
   } catch (error) {
     console.log('Can\'t read file: ' + fileName);
   }
+  return null;
 };
 
 const parseFile = (data) => {

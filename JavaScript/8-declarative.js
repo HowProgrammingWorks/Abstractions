@@ -10,7 +10,7 @@
 
 const task = {
   file: './cities.csv',
-  types: [String, Number, Number, Number, String, Number],
+  types: ['string', 'number', 'number', 'number', 'string', 'number'],
   width: [18, 10, 8, 8, 18, 6],
   pad: ' ',
   separator: ',',

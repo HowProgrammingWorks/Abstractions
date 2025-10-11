@@ -12,12 +12,12 @@ const cellWidth = [18, 10, 8, 8, 18, 6];
 const renderTable = (table) => table
   .map((row) => row
     .map((cell, i) => cell
-      .toString()[(i ? 'padStart' : 'padEnd')](cellWidth[i]))
+      .toString()[i ? 'padStart' : 'padEnd'](cellWidth[i]))
     .join(''))
   .join('\n');
 
 const calcProportion = (table) => (
-  table.sort((row1, row2) => (row2[densityCol] - row1[densityCol])),
+  table.toSorted((row1, row2) => row2[densityCol] - row1[densityCol]),
   table.map((row) => (
     row.push(proportion(table[0][densityCol], row[densityCol])), row
   ))

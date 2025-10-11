@@ -16,6 +16,7 @@ const loadFile = (fileName) => {
     return data;
   } catch (error) {
     console.log('Can\'t read file: ' + fileName);
+    console.error(error);
   }
   return null;
 };
@@ -50,14 +51,14 @@ const calculateDensityColumn = (cities) => {
 
 const showTable = (cities) => {
   for (const city of cities) {
-    const line = (
+    const line =
       city.name.padEnd(18) +
       city.population.toString().padStart(10) +
       city.area.toString().padStart(8) +
       city.density.toString().padStart(8) +
       city.country.padStart(18) +
       city.relative.toString().padStart(6)
-    );
+    ;
     console.log(line);
   }
 };

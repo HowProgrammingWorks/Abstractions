@@ -15,7 +15,7 @@ const loadFile = (fileName) => {
     const data = fs.readFileSync(fileName, 'utf8');
     return data;
   } catch (error) {
-    console.log('Can\'t read file: ' + fileName);
+    console.log(`Can't read file: ${fileName}`);
     console.error(error);
   }
   return null;
